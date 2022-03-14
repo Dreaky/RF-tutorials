@@ -3,6 +3,7 @@
 Nastavnie testov si casto krat vyzaduje pouzitie roznych nastaveni pre odlisne testovacie prostredia.
 Vieme si to nastavit cez premenne globalne premenne a vyhnut sa tak samostatne definovaym premmenym, vid priklad. 
 
+### Priklad 1
 ```python
 # filename variable.py
 server_dev_url = 'dev.robot.com'
@@ -29,6 +30,7 @@ robot --variablefile variable.py --test Test loging user on dev env .
 ```
 V tomto prvom priklade vidime hned viacero zlych pouziti premennych a ich duplikovanie, rovnako aj duplikovanie testov.
 
+### Priklad 2
 ```python
 ENV = 'DEV'
 server_url={
@@ -66,6 +68,7 @@ hodnota prazdna, napr. `ENV=None` alebo `ENV=''` nepomoze nam to. Test by padol 
 Pre tento problem ma [Robot Framework specialne nastavenie premennych](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#getting-variables-from-a-special-function), 
 cez ktore vieme nas problem velmi elegantne vyriesit. 
 
+### Priklad 3
 ```python
 test_configuration = {
     'DEV': {
@@ -111,4 +114,6 @@ robot --variablefile variable.py:TEST --test Test loging user .
 V priklade je len jeden parameter na odlisenie testovacieho prostredia. 
 Moze ich byt vsak pouzito aj viacej, oddelene su dvojbodkov `:` napr. `--variablefile taking_arguments.py:arg1:arg2`
 
-Ak sa ccheme priblizit k idealnemu stavu, vieme si nastavenia a pozuivatelov ulozit niekde do keyvault-u. Nasledne si ich nacitat v nejakej funkcii a nastavit si takto bezpecne celu konfiguraciu testov.
+### Ideal
+Ak sa cheme priblizit k idealnemu stavu, vieme si nastavenia a pozuivatelov ulozit niekde do keyvault-u. Nasledne si ich nacitat v nejakej funkcii a nastavit si takto bezpecne celu konfiguraciu testov.
+Pripadne poslat na vstup suboru s premennymi viac parametrov na upresnenie configuracie testov. 
