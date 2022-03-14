@@ -1,7 +1,7 @@
 ## Robot Framework - Multiple environment settings ( Dynamic Variables )
 
 Nastavnie testov si casto krat vyzaduje pouzitie roznych nastaveni pre odlisne testovacie prostredia.
-Vieme si to nastavit cez premenne globalne premenne a vyhnut sa tak samostatne definovaym premmenym, vid priklad. 
+Vieme si to nastavit cez premenne globalne premenne a vyhnut sa tak samostatne definovaym premmenym, vid priklad 1. 
 
 ### Priklad 1
 ```python
@@ -28,7 +28,9 @@ Test loging user
 ```commandline
 robot --variablefile variable.py --test Test loging user on dev env .
 ```
-V tomto prvom priklade vidime hned viacero zlych pouziti premennych a ich duplikovanie, rovnako aj duplikovanie testov.
+V tomto prvom priklade vidime hned viacero zlych pouziti premennych a ich duplikovanie, 
+rovnako aj duplikovanie testov. Ak to zhrnieme je to velmi zle riesenie z hladiska udrzatelnosti, 
+bezpecnosti a tak isto aj citatelnosti. Horsie je uz len nepouzivat premenne vobec.
 
 ### Priklad 2
 ```python
@@ -66,7 +68,7 @@ Tato hodnota nevie byt zmenena pred spustenim testu ak pozuivame nastavenie cez 
 hodnota prazdna, napr. `ENV=None` alebo `ENV=''` nepomoze nam to. Test by padol na tom ze nevie najst kluc v hash mape `server_url`.
 
 Pre tento problem ma [Robot Framework specialne nastavenie premennych](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#getting-variables-from-a-special-function), 
-cez ktore vieme nas problem velmi elegantne vyriesit. 
+cez ktore vieme nas problem velmi elegantne vyriesit. Avsak nie je velmi dobre popisany ako ho spravne pozuit, preto vznikol tento manual.
 
 ### Priklad 3
 ```python
@@ -115,5 +117,9 @@ V priklade je len jeden parameter na odlisenie testovacieho prostredia.
 Moze ich byt vsak pouzito aj viacej, oddelene su dvojbodkov `:` napr. `--variablefile taking_arguments.py:arg1:arg2`
 
 ### Ideal
-Ak sa cheme priblizit k idealnemu stavu, vieme si nastavenia a pozuivatelov ulozit niekde do keyvault-u. Nasledne si ich nacitat v nejakej funkcii a nastavit si takto bezpecne celu konfiguraciu testov.
-Pripadne poslat na vstup suboru s premennymi viac parametrov na upresnenie configuracie testov. 
+Ak sa cheme priblizit k idealnemu stavu, vieme si nastavenia a pozuivatelov ulozit niekde do keyvault-u. 
+Nasledne si ich nacitat v nejakej funkcii a nastavit si takto bezpecne celu konfiguraciu testov.
+Pripadne poslat na vstup suboru s premennymi viac parametrov na upresnenie configuracie testov.
+
+Taketo nastavenie splna vsetky poziadavky, do zdrojoveho kodu sa nekomituju ziadne mena ani hesla ( bezpecnostne riziko ), 
+mame jeden test s jednym nazvom premennej pre rozne prostredia ( citatelnost a udrzatelnost ). 
