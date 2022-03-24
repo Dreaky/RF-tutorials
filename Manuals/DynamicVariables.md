@@ -110,7 +110,7 @@ def get_variables(*args):
           raise Exception('The defined ENVIRONMENT was not recognized for running tests!')
 ```
 Pripravili sme si nový súbor pre premenné, kde vidíme zmenu pre používateľov, ale aj pre rôzne testovacie konfigurácie, 
-ktorých je často veľký počet. Premenne nasleduje funkcia `get_variables`, ktorou si vieme nastaviť v Robot Frameworku 
+ktorých je často veľký počet. Definovanie premenných `test_configuration` a `users` nasleduje funkcia `get_variables`, ktorou si vieme nastaviť v Robot Frameworku 
 čokoľvek čo potrebujeme. Od jednoduchých nastavení premenných typu: `premenna = args[0]` až po komplexné nastavenia
 na základe rôznych funkcii.
 
